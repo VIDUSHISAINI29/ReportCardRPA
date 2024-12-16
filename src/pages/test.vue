@@ -1,4 +1,4 @@
-<script >
+<script setup>
 import { ref, watch } from 'vue';
 
 
@@ -11,6 +11,14 @@ function triggerDropdown(params){
   showOptions.value = false;
 }
 
+function triggerDropdownTrue(){
+    console.log('show1 = ', showOptions.value);
+ 
+  showOptions.value = true;
+  console.log('show2 = ', showOptions.value);
+
+}
+
 const attReport = ref([
     { name: 'The student has maintained near-perfect attendance, showing a strong commitment to their education and eagerness to learn', code: 'Excellent', bgColor: 'tw-bg-green-500' },
     { name: 'The student attends regularly with only a few absences, indicating a responsible attitude toward school', code: 'Good', bgColor: 'tw-bg-blue-500' },
@@ -18,9 +26,8 @@ const attReport = ref([
     { name: "Frequent absences have slightly impacted the student's learning progress.", code: 'Need Improvement', bgColor: 'tw-bg-orange-500' },
     { name: "Irregular attendance has significantly hindered the student's ability to stay updated with classroom activities.", code: 'Poor', bgColor: 'tw-bg-red-500' }
 ]);
-watch(showOptions,()=>{
+watch(showOptions, () => {
   console.log('show = ', showOptions.value);
-  
 });
 console.log('show = ', showOptions.value);
 
@@ -29,7 +36,7 @@ console.log('show = ', showOptions.value);
 
 <template>
   <div class="tw-p-1 tw-bg-purple-300 tw-w-72 tw-relative">
-    <span @click="showOptions = !showOptions" class="tw-bg-red-200 tw-p-2 tw-block tw-w-full tw-rounded-md tw-shadow-lg">{{selectedPara1}}</span>
+    <span @click="showOptions = true" class="tw-bg-red-200 tw-cursor-pointer tw-p-2 tw-block tw-w-full tw-rounded-md tw-shadow-lg">Selected Behaviour</span>
     <ul
     v-if="showOptions"
     class="tw-absolute tw-z-10 tw-mt-2 tw-w-full tw-bg-white tw-rounded-lg tw-shadow-xl tw-transition-all tw-duration-500 tw-ease-in-out tw-transform tw-origin-top"
@@ -40,54 +47,3 @@ console.log('show = ', showOptions.value);
     </ul>
   </div>
 </template>
-
-<!-- 
-<template>
-  <div class="tw-relative tw-inline-block tw-w-64">
-  <button 
-    @click="open = !open"
-    class="tw-w-full tw-p-2 tw-bg-white tw-rounded-md tw-border tw-border-gray-300 tw-shadow-md focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-blue-500"
-  >
-    Select Behavior
-  </button>
-
-  <ul
-    v-if="open"
-    class="tw-absolute tw-z-10 tw-mt-2 tw-w-full tw-bg-white tw-rounded-md tw-shadow-lg tw-border tw-border-gray-200 tw-transition-all tw-duration-300 tw-ease-in-out tw-transform tw-origin-top"
-    :class="open ? 'tw-scale-y-100' : 'tw-scale-y-0'"
-    style="transform-origin: top;"
-  >
-    <li
-      v-for="(behaviour, index) in attReport"
-      :key="index"
-      @click="selectBehaviour(behaviour)"
-      :class="['tw-px-4 tw-py-2  tw-cursor-pointer', behaviour.bgColor]"
-    >
-      {{ behaviour.name }}
-    </li>
-  </ul>
-</div>
-
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      open: false, // Controls dropdown visibility
-      attReport: [
-        { name: "Excellent", bgColor: "hover:tw-bg-green-200" },
-        { name: "Good", bgColor: "hover:tw-bg-blue-200" },
-        { name: "Average", bgColor: "hover:tw-bg-yellow-200" },
-        { name: "Poor", bgColor: "hover:tw-bg-red-200" },
-      ],
-    };
-  },
-  methods: {
-    selectBehaviour(behaviour) {
-      console.log("Selected:", behaviour.name);
-      this.open = false; // Close dropdown
-    },
-  },
-};
-</script> -->

@@ -2,7 +2,7 @@
 
 <template>
    <div>
-      <h2 class="tw-flex tw-underline">App Layout</h2>
+      
       <router-view />
    </div>
 </template>
